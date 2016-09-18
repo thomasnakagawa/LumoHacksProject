@@ -9,6 +9,7 @@ import UserRegister from './components/user/register';
 import UserProfile from './components/user/profile';
 import ResetPassword from './components/user/reset_password';
 import ListPage from './components/ListPage';
+import WishForm from './components/WishForm';
 
 
 export default (
@@ -21,6 +22,7 @@ export default (
     <Route path="/profile" component={UserProfile}/>
     <Route path="/wishes/" component={ListPage}/>
     <Route path="/wishes/:wishId" component={ListPage}/>
+    <Route path="/wishform" component={WishForm}/>
   </Route>
 
 );
