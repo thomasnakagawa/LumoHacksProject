@@ -1,9 +1,9 @@
 import firebase from 'firebase';
 import {FIREBASE_CONFIG} from '../config';
 
-export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
-export const firebaseAuth = firebaseApp.auth();
-export const firebaseDb = firebaseApp.database();
+// export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
+// export const firebaseAuth = firebaseApp.auth();
+// export const firebaseDb = firebaseApp.database();
 
 var FireBaseTools = {
 
@@ -36,6 +36,7 @@ var FireBaseTools = {
    * @returns {any|!firebase.Thenable.<*>|firebase.Thenable<any>}
    */
   loginWithProvider: (p) => {
+    let firebaseAuth = firebase.auth;
     let provider = FireBaseTools.getProvider(p);
     return firebaseAuth.signInWithPopup(provider).then(function (result) {
       return firebaseAuth.currentUser;
