@@ -25,38 +25,54 @@ class ListPage extends Component {
   }
 
   distanceToUser(wish) {
-    //todo: implement distance
+    //todo: implement distance. for now we sort by time made instead
     return wish.postedAt;
   }
 
   get wishes() {
-    let allWishes = {100: {title: 'my wish', postedAt: 1, }, 200: {title: 'sample wish', postedAt: 2}}; //this.state.wishes
+    let allWishes = this.state.wishes;
     let wishArray = [];
     for (var wish in allWishes) {
       wishArray.push({title: allWishes[wish].title, postedAt: allWishes[wish].postedAt, id: wish});
     }
     let sortedWishes = wishArray.sort((a,b) => {return this.distanceToUser(b) - this.distanceToUser(a)});
     return (
-      sortedWishes.map(wish => {
-        let url = '/wishes/' + wish.id;
-        return (
-            <div key={wish.id} className="list-page-item">
-              <Link to={{ pathname: url}}>
-                {wish.title}
-              </Link>
-            </div>
-        );
-      })
+      <div>
+        <h1>Wishes</h1>
+        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          {sortedWishes.map(wish => {
+            let url = '/wishes/' + wish.id;
+            return (
+                <div key={wish.id} className="list-page-grid-item" onClick={() => {window.location.href = url;}}>
+                  <img src={wish.imgUrl || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'}/>
+                  {wish.firstName || "person"}
+                  {wish.title}
+                </div>
+            );
+          })}
+        </div>
+      </div>
     );
   }
 
   get details() {
-    let allWishes = {100: {title: 'my wish', postedAt: 1, }, 200: {title: 'sample wish', postedAt: 2}}; //this.state.wishes
+    let allWishes = this.state.wishes;
     let wishData = allWishes[this.props.params.wishId];
+    if (wishData) {
+      return (
+        <div>
+          <h1>{wishData.title}</h1>
+          <p>{wishData.body}</p>
+
+          <p>{"this was posted at: " + wishData.postedAt}</p>
+          <Link to={{ pathname: "/wishes/"}}>Back to all wishes</Link>
+        </div>
+      );
+    }
     return (
       <div>
-        <p>{wishData.title}</p>
-        <p>{wishData.postedAt}</p>
+        <p>Sorry, that wish was not found</p>
+        <Link to={{ pathname: "/wishes/"}}>Back to all wishes</Link>
       </div>
     );
   }

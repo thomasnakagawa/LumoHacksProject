@@ -1,3 +1,20 @@
 body {
   font-size: 16px;
 }
+
+.list-page-grid-item {
+	width: 200px;
+	height: 200px;
+	background-color: gray;
+	padding: 5px;
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	img {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+}
