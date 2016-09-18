@@ -73,7 +73,7 @@ class App extends Component {
         </header>
 
         <div className="container">
-          <img className='home-page-background' src='../../assets/bg-02.png' style={{zIndex: '-10'}}/>
+          <img className='home-page-background' src='http://i347.photobucket.com/albums/p471/Calypsiel/bg-02_zpsefthzrni.png' style={{zIndex: '-10'}}/>
           {this.props.children}
         </div>
       </div>
