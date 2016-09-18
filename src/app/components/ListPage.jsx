@@ -46,8 +46,8 @@ class ListPage extends Component {
             return (
               <Link to={{pathname: url}} key={wish.id} className="list-page-grid-item">
                 <img src={wish.imgUrl || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'}/>
-                {wish.name || "person"}
-                {wish.title}
+                <p>{wish.name || "person"}</p>
+                <p>{wish.title}</p>
               </Link>
             );
           })}

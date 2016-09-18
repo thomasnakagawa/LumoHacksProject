@@ -35,10 +35,10 @@ class WishForm extends Component {
         name: $('#name').val(),
         imgUrl: this.getRandomAvatar(),
         postedAt: Date.now(),
-        
+
       },
       then(){
-        
+        window.location.href = '/wishes';
       }
     });
   }
