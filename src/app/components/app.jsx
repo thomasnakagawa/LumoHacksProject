@@ -22,24 +22,33 @@ class App extends Component {
 
   renderUserMenu(currentUser) {
     // if current user exists and user id exists than make user navigation
-    if (currentUser && currentUser.uid)
-      return (
-        <li className="dropdown">
-          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
-             aria-haspopup="true" aria-expanded="false">
-            {currentUser.email} <span className="caret"></span></a>
-          <ul className="dropdown-menu">
-            <li><Link to="/profile">Profile</Link></li>
-            <li role="separator" className="divider"></li>
-            <li><Link to="/logout" onClick={this.logOut}>Logout</Link></li>
-          </ul>
-        </li>
-      )
-    else
-      return [
-        <li key={1}><Link to="/login">Login</Link></li>,
-        <li key={2}><Link to="/register">Register</Link></li>
-      ]
+    // if (currentUser && currentUser.uid)
+    //   return (
+    //     <li className="dropdown">
+    //       <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+    //          aria-haspopup="true" aria-expanded="false">
+    //         {currentUser.email} <span className="caret"></span></a>
+    //       <ul className="dropdown-menu">
+    //         <li><Link to="/profile">Profile</Link></li>
+    //         <li role="separator" className="divider"></li>
+    //         <li><Link to="/logout" onClick={this.logOut}>Logout</Link></li>
+    //       </ul>
+    //     </li>
+    //   )
+    // else
+    //   return [
+    //     <li key={1}><Link to="/login">Login</Link></li>,
+    //     <li key={2}><Link to="/register">Register</Link></li>
+    //   ]
+
+    return (
+      <ul className="nav navbar-nav navbar-right">
+        <li key={1}><Link to="/">{'ABOUT'}</Link></li>
+        <li key={2}><Link to="/">{'CONTACT'}</Link></li>
+        <li key={3}><Link to="/">{'WISHES'}</Link></li>
+        <li key={4}><Link to="/">{'LOG IN'}</Link></li>
+      </ul>
+    );
 
   }
 
@@ -55,22 +64,16 @@ class App extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to="/" className="navbar-brand">Firebase & Redux boilerplate</Link>
 
             </div>
             <nav className="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-              <ul className="nav navbar-nav">
-                <li><Link to="/"> Home</Link></li>
-                ,
-              </ul>
-              <ul className="nav navbar-nav navbar-right">
-                {this.renderUserMenu(this.props.currentUser)}
-              </ul>
+              {this.renderUserMenu(this.props.currentUser)}
             </nav>
           </div>
         </header>
 
         <div className="container">
+          <img className='home-page-background' src='../../assets/bg-02.png' style={{zIndex: '-10'}}/>
           {this.props.children}
         </div>
       </div>
