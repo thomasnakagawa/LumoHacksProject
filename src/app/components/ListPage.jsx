@@ -14,7 +14,6 @@ class ListPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {wishes: []};
   }
 
@@ -25,25 +24,34 @@ class ListPage extends Component {
       });
   }
 
+  distanceToUser(wish) {
+    //todo: implement distance
+    return wish.postedAt;
+  }
+
   get wishes() {
     let allWishes = {100: {title: 'my wish', postedAt: 1, }, 200: {title: 'sample wish', postedAt: 2}}; //this.state.wishes
     let wishArray = [];
     for (var wish in allWishes) {
       wishArray.push({title: allWishes[wish].title, postedAt: allWishes[wish].postedAt, id: wish});
     }
-    let sortedWishes = wishArray.sort((a,b) => {return b.postedAt - a.postedAt});
+    let sortedWishes = wishArray.sort((a,b) => {return this.distanceToUser(b) - this.distanceToUser(a)});
     return (
       sortedWishes.map(wish => {
         let url = '/wishes/' + wish.id;
         return (
-          <Link key={wish.id} to={{ pathname: url}}>{wish.title}</Link>
+            <div key={wish.id} className="list-page-item">
+              <Link to={{ pathname: url}}>
+                {wish.title}
+              </Link>
+            </div>
         );
       })
     );
   }
 
   get details() {
-    let allWishes = {100: {title: 'my wish', postedAt: 1, }, 200: {title: 'sample wish', postedAt: 2}};
+    let allWishes = {100: {title: 'my wish', postedAt: 1, }, 200: {title: 'sample wish', postedAt: 2}}; //this.state.wishes
     let wishData = allWishes[this.props.params.wishId];
     return (
       <div>
