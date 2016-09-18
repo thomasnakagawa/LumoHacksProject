@@ -64,8 +64,7 @@ class ListPage extends Component {
         <div>
           <h1>{wishData.title}</h1>
           <p>{wishData.body}</p>
-          
-          <p>{"this was posted at: " + wishData.postedAt}</p>
+
           <Link to={{pathname: "/wishes"}}>Back to all wishes</Link>
         </div>
       );
