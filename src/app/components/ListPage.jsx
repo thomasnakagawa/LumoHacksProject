@@ -33,7 +33,8 @@ class ListPage extends Component {
     let allWishes = this.state.wishes;
     let wishArray = [];
     for (var wish in allWishes) {
-      wishArray.push({title: allWishes[wish].title, postedAt: allWishes[wish].postedAt, id: wish});
+      const wishObj = allWishes[wish];
+      wishArray.push({title: wishObj.title, postedAt: wishObj.postedAt, id: wish, name: wishObj.name, imgUrl: wishObj.imgUrl});
     }
     let sortedWishes = wishArray.sort((a,b) => {return this.distanceToUser(b) - this.distanceToUser(a)});
     return (
@@ -43,11 +44,11 @@ class ListPage extends Component {
           {sortedWishes.map(wish => {
             let url = '/wishes/' + wish.id;
             return (
-                <div key={wish.id} className="list-page-grid-item" onClick={() => {window.location.href = url;}}>
-                  <img src={wish.imgUrl || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'}/>
-                  {wish.firstName || "person"}
-                  {wish.title}
-                </div>
+              <Link to={{pathname: url}} key={wish.id} className="list-page-grid-item">
+                <img src={wish.imgUrl || 'http://plumtri.org/sites/all/themes/plumtritheme/images/default_profile.jpg'}/>
+                {wish.name || "person"}
+                {wish.title}
+              </Link>
             );
           })}
         </div>
@@ -65,15 +66,12 @@ class ListPage extends Component {
           <p>{wishData.body}</p>
 
           <p>{"this was posted at: " + wishData.postedAt}</p>
-          <Link to={{ pathname: "/wishes/"}}>Back to all wishes</Link>
+          <Link to={{pathname: "/wishes"}}>Back to all wishes</Link>
         </div>
       );
     }
     return (
-      <div>
-        <p>Sorry, that wish was not found</p>
-        <Link to={{ pathname: "/wishes/"}}>Back to all wishes</Link>
-      </div>
+      <div>...</div>
     );
   }
 

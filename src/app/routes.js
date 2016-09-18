@@ -20,7 +20,7 @@ export default (
     <Route path="/register" component={UserRegister}/>
     <Route path="/reset" component={ResetPassword}/>
     <Route path="/profile" component={UserProfile}/>
-    <Route path="/wishes/" component={ListPage}/>
+    <Route path="/wishes" component={ListPage}/>
     <Route path="/wishes/:wishId" component={ListPage}/>
     <Route path="/wishform" component={WishForm}/>
   </Route>
